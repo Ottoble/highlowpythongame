@@ -41,5 +41,13 @@ def getBetAmount(maximum):
     return bet
 
 def playerGuessCorrect(card1, card2, betType):
-    if card1 > card2:
+    if card1 > card2 and betType == "LOW":
         return True
+    elif card1 > card2 and betType == "HIGH":
+        return False
+    elif card1 < card2 and betType == "LOW":
+        return False
+    elif card1 < card2 and betType == "HIGH"
+        return True
+    elif card1 == card2
+        return False
