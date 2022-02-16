@@ -47,7 +47,43 @@ def playerGuessCorrect(card1, card2, betType):
         return False
     elif card1 < card2 and betType == "LOW":
         return False
-    elif card1 < card2 and betType == "HIGH"
+    elif card1 < card2 and betType == "HIGH":
         return True
-    elif card1 == card2
+    elif card1 == card2:
         return False
+
+def printLn():
+    print("-" * 50)
+
+def playGame():
+    gameOver = False
+    round = 1
+
+    while(not gameOver):
+        card1 = getCardValue()
+        card2 = getCardValue()
+        print("First card is a[" + getCardStr(card1) + "]")
+        guess = getHLGuess()
+        bet = getBetAmount(points)
+        print("Second card is a [" + card2 + "]")
+        cardsStr = "Card 1:[" + getCardStr(card1) + "], Card 2: [" + getCardStr(card2) + "]" \
+            "You bet '" + guess + "' for " + bet + " -" 
+        if(playerGuessCorrect(card1,card2,guess)):
+            cardsStr = cardsStr + "YOU WIN"
+            points = points + bet
+        else:
+            cardStr = cardsStr + "YOU LOSE"
+            
+        print(cardsStr)
+        printLn()
+        round = round + 1
+    return False
+
+print("--- Welcome to High-Low ---\n" \
+    "Start with 100 points. Each round a card will be drawn and shown.\n" \
+    "Select whether you think the 2nd card will be Higher or Lower than the 1st card.\n" \
+    "Then enter the amount you want to bet.\n"\
+    "If you are right, you win the amount you bet, otherwise you lose.\n"\
+    "Try to make it to 500 points within 10 tries.")
+printLn()
+playGame()
