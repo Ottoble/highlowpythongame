@@ -1,7 +1,5 @@
 import random
 
-points = 100
-
 def getCardValue():
     card = random.randint(2,14)
     return card
@@ -54,30 +52,47 @@ def playerGuessCorrect(card1, card2, betType):
 
 def printLn():
     print("-" * 50)
-
+ 
 def playGame():
     gameOver = False
-    round = 1
+    rounds = 1
+    points = 100
+    winLose = ""
 
     while(not gameOver):
+        print("OVERALL POINTS:", points, "ROUND", rounds, "/10")
         card1 = getCardValue()
         card2 = getCardValue()
-        print("First card is a[" + getCardStr(card1) + "]")
+        print("First card is a [",getCardStr(card1),"]")
         guess = getHLGuess()
         bet = getBetAmount(points)
-        print("Second card is a [" + card2 + "]")
-        cardsStr = "Card 1:[" + getCardStr(card1) + "], Card 2: [" + getCardStr(card2) + "]" \
-            "You bet '" + guess + "' for " + bet + " -" 
+        print("Second card is a [",getCardStr(card2),"]")
         if(playerGuessCorrect(card1,card2,guess)):
-            cardsStr = cardsStr + "YOU WIN"
+            winLose = "YOU WIN"
             points = points + bet
         else:
-            cardStr = cardsStr + "YOU LOSE"
-            
-        print(cardsStr)
+            winLose = "YOU LOSE" 
+            points = points - bet           
+        print("Card 1:[",getCardStr(card1),"], Card 2: [",getCardStr(card2),"]" \
+            " You bet '",guess,"' for ",bet," -", winLose)
         printLn()
-        round = round + 1
-    return False
+        rounds = rounds + 1
+
+        if(points >= 500 or points <= 0):
+            gameOver = True
+        elif rounds > 10 and points < 500:
+            gameOver = True
+
+    if winLose == "YOU WIN":
+        print("-" * 22 + "WIN" + "-" * 22)
+        print("YOU MADE IT TO*", points, "* POINTS IN", round, "ROUNDS!")
+    else:
+        print("-" * 22 + "LOSE" + "-" * 22)
+        if(rounds == 10):
+            print("ONLY *", points, "* POINTS IN 10 ROUNDS!")
+        elif(points <= 0):
+            print("YOU HAVE * 0 * POINTS AFTER", rounds, "ROUNDS!")
+    printLn()
 
 print("--- Welcome to High-Low ---\n" \
     "Start with 100 points. Each round a card will be drawn and shown.\n" \
