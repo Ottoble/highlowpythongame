@@ -87,7 +87,7 @@ def playGame():
 
     if winLose == "YOU WIN":
         print("-" * 22 + "WIN" + "-" * 22)
-        print("YOU MADE IT TO*", points, "* POINTS IN", round, "ROUNDS!")
+        print("YOU MADE IT TO*", points, "* POINTS IN", rounds, "ROUNDS!")
     else:
         print("-" * 22 + "LOSE" + "-" * 22)
         if(rounds == 10):
